@@ -1,7 +1,7 @@
-package introsde.document.client;
+package introsde.assignment.soap.client;
 
-import introsde.document.model.Person;
-import introsde.document.ws.People;
+import introsde.assignment.soap.model.Person;
+import introsde.assignment.soap.ws.People;
 
 import java.net.URL;
 import java.util.List;

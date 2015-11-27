@@ -1,14 +1,14 @@
-package introsde.document.ws;
-import introsde.document.model.LifeStatus;
-import introsde.document.model.Person;
-
+package introsde.assignment.soap.ws;
 import java.util.List;
 
 import javax.jws.WebService;
 
+import introsde.assignment.soap.model.LifeStatus;
+import introsde.assignment.soap.model.Person;
+
 //Service Implementation
 
-@WebService(endpointInterface = "introsde.document.ws.People",
+@WebService(endpointInterface = "introsde.assignment.soap.ws.People",
     serviceName="PeopleService")
 public class PeopleImpl implements People {
 

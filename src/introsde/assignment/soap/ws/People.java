@@ -1,7 +1,4 @@
-package introsde.document.ws;
-import introsde.document.model.LifeStatus;
-import introsde.document.model.Person;
-
+package introsde.assignment.soap.ws;
 import java.util.List;
 
 import javax.jws.WebMethod;
@@ -11,6 +8,9 @@ import javax.jws.WebResult;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
+
+import introsde.assignment.soap.model.LifeStatus;
+import introsde.assignment.soap.model.Person;
 
 @WebService
 @SOAPBinding(style = Style.DOCUMENT, use=Use.LITERAL) //optional

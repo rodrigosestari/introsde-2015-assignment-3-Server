@@ -1,7 +1,7 @@
-package introsde.document.model;
+package introsde.assignment.soap.model;
 
-import introsde.document.dao.LifeCoachDao;
-import introsde.document.model.Person;
+import introsde.assignment.soap.dao.LifeCoachDao;
+import introsde.assignment.soap.model.Person;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

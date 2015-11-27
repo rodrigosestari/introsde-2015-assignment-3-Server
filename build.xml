@@ -15,7 +15,7 @@
        # The target "download-ivy" and "install-ivy" will download the ivy jar and place it in the "ivy" folder
        # 
 -->
-    <project name="sdelab09" default="install" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+    <project name="assignment3server" default="install" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
         <!-- PART 1: Ivy properties, download, installation and configuration -->
         <property name="ivy.install.version" value="2.4.0-rc1" />
         <property name="ivy.jar.dir" value="${basedir}/ivy" />
@@ -104,8 +104,8 @@
             </copy>
         </target>
         <target name="start">
-            <echo message="app start introsde.document.endpoint.PeoplePublisher in ${build.dir}" />
-            <java classname="introsde.document.endpoint.PeoplePublisher" classpath="${build.dir}" fork="true">
+            <echo message="app start introsde.assignment.soap.endpoint.PeoplePublisher in ${build.dir}" />
+            <java classname="introsde.assignment.soap.endpoint.PeoplePublisher" classpath="${build.dir}" fork="true">
                 <arg value="$JAVA_OPTS  -cp" />
                 <classpath>
                     <path location="build" />
@@ -117,8 +117,8 @@
             </java>
         </target>
         <target name="execute.client">
-            <echo message="ant execute.client introsde.document.client.PeopleClient in ${build.dir}" />
-            <java classname="introsde.document.client.PeopleClient" classpath="${build.dir}" fork="true">
+            <echo message="ant execute.client introsde.assignment.soap.client.PeopleClient in ${build.dir}" />
+            <java classname="introsde.assignment.soap.client.PeopleClient" classpath="${build.dir}" fork="true">
                 <arg value="$JAVA_OPTS  -cp" />
                 <classpath>
                     <path location="build" />
@@ -152,7 +152,7 @@
         </target>
         <!-- make sure you have created first the WebContent folder, including a META-INF folder, WEB-INF/web.xml file and WEB-INF/lib folder -->
         <target name="create.war" depends="install">
-            <war destfile="sdelab06.war" webxml="${web.dir}/WebContent/WEB-INF/web.xml">
+            <war destfile="assignment3server.war" webxml="${web.dir}/WebContent/WEB-INF/web.xml">
                 <fileset dir="${web.dir}/WebContent">
                     <include name="**/*.*" />
                 </fileset>

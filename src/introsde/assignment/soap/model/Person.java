@@ -1,6 +1,4 @@
-package introsde.document.model;
-
-import introsde.document.dao.LifeCoachDao;
+package introsde.assignment.soap.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +15,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import introsde.assignment.soap.dao.LifeCoachDao;
 @Entity  // indicates that this class is an entity to persist in DB
 @Table(name="Person") // to whole table must be persisted 
 @NamedQuery(name="Person.findAll", query="SELECT p FROM Person p")
