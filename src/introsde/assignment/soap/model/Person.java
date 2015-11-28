@@ -69,6 +69,17 @@ public class Person implements Serializable {
         LifeCoachDao.instance.closeConnections(em);
         return p;
     }
+	
+	public static List<Measure> getListMeasureByPerson(Long personId) {
+
+        return Measure.getListCurrentMeasureByPerson(personId);
+    }
+	
+	public static List<Measure> getCurrentMeasureByPerson(Long personId) {
+       
+        return Measure.getListCurrentMeasureByPerson(personId);
+    }
+	
 
     public static List<Person> getAll() {
         EntityManager em = LifeCoachDao.instance.createEntityManager();

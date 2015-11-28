@@ -14,12 +14,9 @@
         </custom-converters>         
     </configuration>
     <mapping type="one-way" wildcard="true"> 
-        <class-a>introsde.assignment.soap.model.Person.java</class-a>
+        <class-a>introsde.assignment.soap.model.Person</class-a>
         <class-b>introsde.assignment.soap.bean.PersonBean</class-b>   
-        <field>
-            <a get-method="getCurrentHealth">currentHealth</a>
-            <b>currentHealth</b>
-        </field>
-    </mapping> 
+    
+    <field><a get-method="getListMeasureByPerson" map-get-method="getListMeasureByPerson"></a><b>healthHistory</b></field><field><a>firstname</a><b>firstname</b></field><field><a>lastname</a><b>lastname</b></field><field><a get-method="getCurrentMeasureByPerson" map-get-method="getListMeasureByPerson"></a><b>currentHealth</b></field><field><a>id</a><b>id</b></field></mapping> 
 </mappings>
         

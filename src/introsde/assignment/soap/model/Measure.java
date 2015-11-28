@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -29,7 +30,14 @@ import introsde.assignment.soap.dao.LifeCoachDao;
  */
 @Entity
 @Table(name="Measure")
-@NamedQuery(name="Measure.findAll", query="SELECT m FROM Measure m")
+@NamedQueries({
+	@NamedQuery(name="Measure.findAll", query="SELECT m FROM Measure m"),
+	@NamedQuery(name = "Measure.findCurrentdMeasure", query = "SELECT m FROM Measure m WHERE m.person.id = :id GROUP BY m.measureType ORDER BY m.dateRegistered DESC"),
+	@NamedQuery(name = "Measure.findMeasure", query = "SELECT m FROM Measure m WHERE m.person.id = :id"),
+ })
+
+
+
 @XmlRootElement
 public class Measure implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -111,11 +119,27 @@ public class Measure implements Serializable {
 	
 
 	// database operations
-	public static Measure getMeasureDefinitionById(int personId) {
+	public static Measure getMeasureById(Long id) {
 		EntityManager em = LifeCoachDao.instance.createEntityManager();
-		Measure p = em.find(Measure.class, personId);
+		Measure p = em.find(Measure.class, id);
 		LifeCoachDao.instance.closeConnections(em);
 		return p;
+	}
+	
+	public static List<Measure> getListMeasureByPerson(Long idPerson) {
+		EntityManager em = LifeCoachDao.instance.createEntityManager();		
+		List<Measure> pd = em.createNamedQuery("Measure.findMeasure", Measure.class)
+				.setParameter("id", idPerson).getResultList();
+		LifeCoachDao.instance.closeConnections(em);
+		return pd;
+	}
+	
+	public static List<Measure> getListCurrentMeasureByPerson(Long idPerson) {
+		EntityManager em = LifeCoachDao.instance.createEntityManager();
+		List<Measure> pd = em.createNamedQuery("Measure.findCurrentdMeasure", Measure.class)
+				.setParameter("id", idPerson).getResultList();
+		LifeCoachDao.instance.closeConnections(em);
+		return pd;
 	}
 	
 	public static List<Measure> getAll() {
