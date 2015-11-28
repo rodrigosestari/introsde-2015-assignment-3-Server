@@ -1,19 +1,17 @@
 package introsde.assignment.soap.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
-import java.util.Locale;
 
-
-import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import introsde.assignment.soap.dao.LifeCoachDao;
@@ -28,82 +26,44 @@ public class Person implements Serializable {
     @TableGenerator(name="sqlite_person", table="sqlite_sequence",
         pkColumnName="name", valueColumnName="seq",
         pkColumnValue="Person")
+    
     @Column(name="idPerson")
-    private int idPerson;
+    private long id;
+    
     @Column(name="lastname")
     private String lastname;
-    @Column(name="name")
-    private String name;
-    @Column(name="username")
-    private String username;
-    @Temporal(TemporalType.DATE) // defines the precision of the date attribute
-    @Column(name="birthdate")
-    private Date birthdate; 
-    @Column(name="email")
-    private String email;
     
-    // mappedBy must be equal to the name of the attribute in LifeStatus that maps this relation
-    @OneToMany(mappedBy="person",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-    private List<LifeStatus> lifeStatus;
-    
-    @XmlElementWrapper(name = "Measurements")
-    public List<LifeStatus> getLifeStatus() {
-        return lifeStatus;
-    }
-    public void setLifeStatus(List<LifeStatus> param) {
-        this.lifeStatus = param;
-    }
-    // add below all the getters and setters of all the private attributes
-    
-    // getters
-    public int getIdPerson(){
-        return idPerson;
-    }
+    @Column(name="firstname")
+    private String firstname;
 
-    public String getLastname(){
-        return lastname;
-    }
-    public String getName(){
-        return name;
-    }
-    public String getUsername(){
-        return username;
-    }
-    public Date getBirthdate(){
-        //DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        // Get the date today using Calendar object.
-        //return df.format(birthdate);
-        return birthdate;
-    }
-    public String getEmail(){
-        return email;
-    }
+
     
-    // setters
-    public void setIdPerson(int idPerson){
-        this.idPerson = idPerson;
-    }
-    public void setLastname(String lastname){
-        this.lastname = lastname;
-    }
-    public void setName(String name){
-        this.name = name;
-    }
-    public void setUsername(String username){
-        this.username = username;
-    }
-    public void setBirthdate(Date bd){
-        //throws ParseException
-        //DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        //Date date = format.parse(bd);
-        //this.birthdate = date;
-        this.birthdate = bd;
-    }
-    public void setEmail(String email){
-        this.email = email;
-    }
-    
-    public static Person getPersonById(int personId) {
+    public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+
+	public static Person getPersonById(Long personId) {
         EntityManager em = LifeCoachDao.instance.createEntityManager();
         Person p = em.find(Person.class, personId);
         LifeCoachDao.instance.closeConnections(em);

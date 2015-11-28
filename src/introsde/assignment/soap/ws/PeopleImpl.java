@@ -3,7 +3,6 @@ import java.util.List;
 
 import javax.jws.WebService;
 
-import introsde.assignment.soap.model.LifeStatus;
 import introsde.assignment.soap.model.Person;
 
 //Service Implementation
@@ -13,11 +12,11 @@ import introsde.assignment.soap.model.Person;
 public class PeopleImpl implements People {
 
     @Override
-    public Person readPerson(int id) {
+    public Person readPerson(Long id) {
         System.out.println("---> Reading Person by id = "+id);
         Person p = Person.getPersonById(id);
         if (p!=null) {
-            System.out.println("---> Found Person by id = "+id+" => "+p.getName());
+            System.out.println("---> Found Person by id = "+id+" => "+p.getFirstname());
         } else {
             System.out.println("---> Didn't find any Person with  id = "+id);
         }
@@ -30,19 +29,19 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public int addPerson(Person person) {
+    public Long addPerson(Person person) {
         Person.savePerson(person);
-        return person.getIdPerson();
+        return person.getId();
     }
 
     @Override
-    public int updatePerson(Person person) {
+    public Long updatePerson(Person person) {
         Person.updatePerson(person);
-        return person.getIdPerson();
+        return person.getId();
     }
 
     @Override
-    public int deletePerson(int id) {
+    public int deletePerson(Long id) {
         Person p = Person.getPersonById(id);
         if (p!=null) {
             Person.removePerson(p);
@@ -52,15 +51,6 @@ public class PeopleImpl implements People {
         }
     }
 
-    @Override
-    public int updatePersonHP(int id, LifeStatus hp) {
-        LifeStatus ls = LifeStatus.getLifeStatusById(hp.getIdMeasure());
-        if (ls.getPerson().getIdPerson() == id) {
-            LifeStatus.updateLifeStatus(hp);
-            return hp.getIdMeasure();
-        } else {
-            return -1;
-        }
-    }
+
 
 }
