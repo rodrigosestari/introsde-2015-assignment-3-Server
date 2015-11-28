@@ -9,6 +9,7 @@ import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
+import introsde.assignment.soap.bean.PersonBean;
 import introsde.assignment.soap.model.Person;
 
 @WebService
@@ -32,7 +33,7 @@ public interface People {
      */
     @WebMethod(operationName="readPersonList")
     @WebResult(name="people") 
-    public List<Person> getPeople();
+    public List<PersonBean> getPeople();
 
     
     /**
@@ -54,7 +55,7 @@ public interface People {
      */
     @WebMethod(operationName="updatePerson")
     @WebResult(name="personId") 
-    public Long updatePerson(@WebParam(name="person") Person person);
+    public Long updatePerson(@WebParam(name="person") PersonBean person);
 
     /**
      * Method #5: deletePerson(Long id) should delete the Person identified by {id} from the system

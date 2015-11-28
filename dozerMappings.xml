@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">          
+          
+  
+    <configuration>        
+        <custom-converters> 
+            <converter type="introsde.assignment.util.DateTimeConverter" >
+                <class-a>java.util.Date</class-a>
+                <class-b>org.joda.time.DateTime</class-b>
+            </converter>     
+        </custom-converters>         
+    </configuration>
+    <mapping type="one-way" wildcard="true"> 
+        <class-a>introsde.assignment.soap.model.Person.java</class-a>
+        <class-b>introsde.assignment.soap.bean.PersonBean</class-b>   
+        <field>
+            <a get-method="getCurrentHealth">currentHealth</a>
+            <b>currentHealth</b>
+        </field>
+    </mapping> 
+</mappings>
+        

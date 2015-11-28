@@ -3,6 +3,8 @@ import java.util.List;
 
 import javax.jws.WebService;
 
+import introsde.assignment.soap.bean.PersonBean;
+import introsde.assignment.soap.mapping.PersonBeanDelegate;
 import introsde.assignment.soap.model.Person;
 
 //Service Implementation
@@ -24,8 +26,9 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public List<Person> getPeople() {
-        return Person.getAll();
+    public List<PersonBean> getPeople() {
+    	List<PersonBean> pl = PersonBeanDelegate.mapFromPersonList(Person.getAll());
+    	return pl;
     }
 
     @Override
@@ -35,8 +38,9 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public Long updatePerson(Person person) {
-        Person.updatePerson(person);
+    public Long updatePerson(PersonBean person) {
+    	Person p = PersonBeanDelegate.mapToPerson(person);
+        Person.updatePerson(p);
         return person.getId();
     }
 

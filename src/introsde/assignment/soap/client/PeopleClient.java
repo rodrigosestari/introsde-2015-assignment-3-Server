@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import introsde.assignment.soap.bean.PersonBean;
 import introsde.assignment.soap.model.Person;
 import introsde.assignment.soap.ws.People;
 
@@ -19,7 +20,7 @@ public class PeopleClient{
 
         People people = service.getPort(People.class);
         Person p = people.readPerson(Long.valueOf(1));
-        List<Person> pList = people.getPeople();
+        List<PersonBean> pList = people.getPeople();
         System.out.println("Result ==> "+p);
         System.out.println("Result ==> "+pList);
         System.out.println("First Person in the list ==> "+pList.get(0).getFirstname());
