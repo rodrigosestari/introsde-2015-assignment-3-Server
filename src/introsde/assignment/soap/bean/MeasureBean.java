@@ -25,20 +25,23 @@ public class MeasureBean implements Serializable {
 	private static final long serialVersionUID = 3114667130740699756L;
 
 	@Mapping("mid")
-	Long mid;
+	private Long mid;
 	 
 	@Mapping("dateRegistered")
 	 @XmlJavaTypeAdapter(type = DateTime.class, value = DateTimeAdapter.class)
-	 Date dateRegistered;
+	private Date dateRegistered;
 	 
+	 @Mapping("measureName")
+	private String measureName;
+	
 	 @Mapping("measureType")
-	 String measureType;
+	 private String measureType;
 	 
 	 @Mapping("mimeasureValued")
-	 String measureValue;
+	 private String measureValue;
 	 
 	 @Mapping("mimeasureValueTyped")
-	 String measureValueType; // string, integer, real
+	 private String measureValueType; // string, integer, real
 	public Long getMid() {
 		return mid;
 	}
@@ -68,6 +71,12 @@ public class MeasureBean implements Serializable {
 	}
 	public void setMeasureValueType(String measureValueType) {
 		this.measureValueType = measureValueType;
+	}
+	public String getMeasureName() {
+		return measureName;
+	}
+	public void setMeasureName(String measureName) {
+		this.measureName = measureName;
 	}
 	 
 	 

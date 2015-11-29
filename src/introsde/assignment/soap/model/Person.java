@@ -28,7 +28,7 @@ public class Person implements Serializable {
         pkColumnValue="Person")
     
     @Column(name="idPerson")
-    private long id;
+    private Long id;
     
     @Column(name="lastname")
     private String lastname;
@@ -36,13 +36,16 @@ public class Person implements Serializable {
     @Column(name="firstname")
     private String firstname;
 
+    private List<Measure> currentHealth = null; // one for each type of measure
+
+    private List<Measure> healthHistory = null; // all measurements
 
     
-    public long getId() {
+    public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -70,18 +73,26 @@ public class Person implements Serializable {
         return p;
     }
 	
-	public static List<Measure> getListMeasureByPerson(Long personId) {
+	public List<Measure> getHealthHistory() {
 
-        return Measure.getListCurrentMeasureByPerson(personId);
+        return Measure.getListCurrentMeasureByPerson(getId());
     }
 	
-	public static List<Measure> getCurrentMeasureByPerson(Long personId) {
+	public List<Measure> getCurrentHealth() {
        
-        return Measure.getListCurrentMeasureByPerson(personId);
+        return Measure.getListCurrentMeasureByPerson(getId());
     }
 	
+	public void setCurrentHealth(List<Measure> currentHealth) {
+		this.currentHealth = currentHealth;
+	}
 
-    public static List<Person> getAll() {
+
+	public void setHealthHistory(List<Measure> healthHistory) {
+		this.healthHistory = healthHistory;
+	}
+
+	public static List<Person> getAll() {
         EntityManager em = LifeCoachDao.instance.createEntityManager();
         List<Person> list = em.createNamedQuery("Person.findAll", Person.class)
             .getResultList();
@@ -118,5 +129,6 @@ public class Person implements Serializable {
         tx.commit();
         LifeCoachDao.instance.closeConnections(em);
     }
+    
     
 }
