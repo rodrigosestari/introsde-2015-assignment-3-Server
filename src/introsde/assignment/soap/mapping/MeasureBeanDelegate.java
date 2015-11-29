@@ -1,5 +1,6 @@
 package introsde.assignment.soap.mapping;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.dozer.DozerBeanMapper;
@@ -43,4 +44,17 @@ public class MeasureBeanDelegate {
 		mapper.setMappingFiles(myMappingFiles);
 		return (introsde.assignment.soap.bean.MeasureBean) mapper.map(person, introsde.assignment.soap.bean.MeasureBean.class);
 	}
+	
+	public static List<introsde.assignment.soap.bean.MeasureBean> mapFromMeasureList(List<introsde.assignment.soap.model.Measure> personl) {
+		ArrayList<introsde.assignment.soap.bean.MeasureBean> bl = null;
+		if ((personl != null) && (personl.size() > 0)){
+			bl = new ArrayList<introsde.assignment.soap.bean.MeasureBean>();
+			for (introsde.assignment.soap.model.Measure p :personl){
+				bl.add(mapFromMeasure(p));
+			}
+		}
+		return bl;
+	}
+	
+	
 }

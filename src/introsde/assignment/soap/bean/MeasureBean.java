@@ -31,7 +31,6 @@ public class MeasureBean implements Serializable {
 	private Long mid;
 	 
 	@Mapping("dateRegistered")
-	 @XmlJavaTypeAdapter(type = DateTime.class, value = DateTimeAdapter.class)
 	private Date dateRegistered;
 	 
 	 @Mapping("measureType")

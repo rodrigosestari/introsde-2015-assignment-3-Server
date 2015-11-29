@@ -37,11 +37,7 @@ import introsde.assignment.soap.dao.LifeCoachDao;
 	@NamedQuery(name = "Measure.findCurrentdMeasure", query = "SELECT m FROM Measure m WHERE m.person.id = :id GROUP BY m.measureType ORDER BY m.dateRegistered DESC"),
 	@NamedQuery(name = "Measure.findMeasure", query = "SELECT m FROM Measure m WHERE m.person.id = :id"),
  })
-
-
-
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "measure")
+@XmlRootElement
 public class Measure implements Serializable {
 	private static final long serialVersionUID = 1L;
 

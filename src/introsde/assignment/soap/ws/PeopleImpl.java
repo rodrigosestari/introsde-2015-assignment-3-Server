@@ -3,7 +3,9 @@ import java.util.List;
 
 import javax.jws.WebService;
 
+import introsde.assignment.soap.bean.MeasureBean;
 import introsde.assignment.soap.bean.PersonBean;
+import introsde.assignment.soap.mapping.MeasureBeanDelegate;
 import introsde.assignment.soap.mapping.PersonBeanDelegate;
 import introsde.assignment.soap.model.Measure;
 import introsde.assignment.soap.model.Person;
@@ -35,7 +37,8 @@ public class PeopleImpl implements People {
     @Override
     public Long addPerson(PersonBean person) {
     	if ((person.getCurrentHealth() != null) && (person.getCurrentHealth().size() > 0)){
-    		for (Measure m : person.getCurrentHealth()){
+    		for (MeasureBean mb :  person.getCurrentHealth()){
+    			Measure m = MeasureBeanDelegate.mapToMeasure(mb);
     			Measure.saveMeasureDefinition(m);
     		}
     	}
