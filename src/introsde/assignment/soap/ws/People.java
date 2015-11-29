@@ -44,7 +44,7 @@ public interface People {
      */
     @WebMethod(operationName="createPerson")
     @WebResult(name="personId") 
-    public Long addPerson(@WebParam(name="person") Person person);
+    public Long addPerson(@WebParam(name="person") PersonBean person);
 
     
     /**

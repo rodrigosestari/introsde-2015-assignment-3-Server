@@ -5,6 +5,7 @@ import javax.jws.WebService;
 
 import introsde.assignment.soap.bean.PersonBean;
 import introsde.assignment.soap.mapping.PersonBeanDelegate;
+import introsde.assignment.soap.model.Measure;
 import introsde.assignment.soap.model.Person;
 
 //Service Implementation
@@ -32,8 +33,15 @@ public class PeopleImpl implements People {
     }
 
     @Override
-    public Long addPerson(Person person) {
-        Person.savePerson(person);
+    public Long addPerson(PersonBean person) {
+    	if ((person.getCurrentHealth() != null) && (person.getCurrentHealth().size() > 0)){
+    		for (Measure m : person.getCurrentHealth()){
+    			Measure.saveMeasureDefinition(m);
+    		}
+    	}
+    	Person p = PersonBeanDelegate.mapToPerson(person);
+    	
+        Person.savePerson(p);
         return person.getId();
     }
 
