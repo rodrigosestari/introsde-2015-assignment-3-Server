@@ -26,16 +26,6 @@ public class MeasureBeanDelegate {
 		DozerBeanMapper mapper = new DozerBeanMapper();
 		mapper.setMappingFiles(myMappingFiles);
 		return (introsde.assignment.soap.model.Measure) mapper.map(bean, introsde.assignment.soap.model.Measure.class);
-		/*
-		introsde.assignment.soap.model.Measure m =  new Measure();
-		m.setDateRegistered(bean.getDateRegistered());
-		m.setMeasureName(bean.getMeasureName());
-		m.setMeasureType(bean.getMeasureType());
-		m.setMeasureValueType(bean.getMeasureValueType());
-		m.setMid(bean.getMid());
-		//m.setPerson();
-		return m;
-		*/
 	}
     
 	/**
@@ -52,16 +42,5 @@ public class MeasureBeanDelegate {
 		DozerBeanMapper mapper = new DozerBeanMapper();
 		mapper.setMappingFiles(myMappingFiles);
 		return (introsde.assignment.soap.bean.MeasureBean) mapper.map(person, introsde.assignment.soap.bean.MeasureBean.class);
-		/*
-		 introsde.assignment.soap.bean.MeasureBean  bean =  new MeasureBean();
-		 bean.setDateRegistered(person.getDateRegistered());
-		 bean.setMeasureName(person.getMeasureName());
-		 bean.setMeasureType(person.getMeasureType());
-		 bean.setMeasureValueType(person.getMeasureValueType());
-		 bean.setMid(person.getMid());
-		
-		 //m.setPerson();
-		return bean;
-		*/
 	}
 }

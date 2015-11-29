@@ -2,15 +2,18 @@ package introsde.assignment.soap.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.dozer.Mapping;
 import org.joda.time.DateTime;
 
+import introsde.assignment.soap.model.Measure;
 import introsde.assignment.soap.util.DateTimeAdapter;
 
 
@@ -39,6 +42,8 @@ public class MeasureBean implements Serializable {
 	 
 	 @Mapping("measureValueType")
 	 private String measureValueType; // string, integer, real
+	 
+
 	 
 	public Long getMid() {
 		return mid;

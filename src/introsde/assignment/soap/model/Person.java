@@ -65,6 +65,7 @@ public class Person implements Serializable {
 		this.firstname = firstname;
 	}
 
+	private List<Measure> currentHealth = null; 
 
 	public static Person getPersonById(Long personId) {
         EntityManager em = LifeCoachDao.instance.createEntityManager();

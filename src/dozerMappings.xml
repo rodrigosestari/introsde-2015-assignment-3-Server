@@ -15,7 +15,7 @@
 	</configuration>
 
 
-	<mapping>
+	<mapping><class-a>introsde.assignment.soap.bean.PersonBean</class-a><class-b>introsde.assignment.soap.model.Person</class-b><field><a>lastname</a><b>lastname</b></field><field><a>firstname</a><b>firstname</b></field><field><a>id</a><b>id</b></field></mapping><mapping>
 		<class-a>introsde.assignment.soap.bean.MeasureBean</class-a>
 		<class-b>introsde.assignment.soap.model.Measure</class-b>
 		<field>
@@ -37,22 +37,6 @@
 	<field><a>measureValue</a><b>measureValue</b></field></mapping>
 
 
-	<mapping type="bi-directional" wildcard="true">
-		<class-a>introsde.assignment.soap.model.Person</class-a>
-		<class-b>introsde.assignment.soap.bean.PersonBean</class-b>
-		<field>
-			<a>firstname</a>
-			<b>firstname</b>
-		</field>
-		<field>
-			<a>lastname</a>
-			<b>lastname</b>
-		</field>
-		<field>
-			<a>id</a>
-			<b>id</b>
-		</field>
-	</mapping>
-
+	
 </mappings>
         

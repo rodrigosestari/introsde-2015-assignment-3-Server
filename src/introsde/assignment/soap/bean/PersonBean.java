@@ -31,7 +31,7 @@ public class PersonBean implements Serializable  {
      @Mapping("lastname")
      private String lastname;
      
-     @XmlElement(name = "currentHealth")
+     @Mapping("currentHealth")
      private  List<Measure> currentHealth; // one for each type of measure
      
 
