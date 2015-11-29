@@ -9,6 +9,8 @@ import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
+import introsde.assignment.soap.bean.MeasureBean;
+import introsde.assignment.soap.bean.MeasureProfile;
 import introsde.assignment.soap.bean.PersonBean;
 import introsde.assignment.soap.model.Person;
 
@@ -67,21 +69,51 @@ public interface People {
     public int deletePerson(@WebParam(name="personId") Long id);
 
     
-  
+/**
+ *  Method #6: readPersonHistory(Long id, String measureType) => 
+ *  List should return the list of values (the history) of {measureType} (e.g. weight) for Person identified by {id} 
+ * @param id
+ * @return
+ */
+    @WebMethod(operationName="readPersonHistory")
+    @WebResult(name="healthProfile-history") 
+    public MeasureProfile readPersonHistory(@WebParam(name="personId") Long id, @WebParam(name="type") String type);
+
+    
+    
+    /**
+     * Method #7: readMeasureTypes() => List should return the list of measures
+     * @param id
+     * @param type
+     * @return
+     */
+    @WebMethod(operationName="readMeasureTypes")
+    @WebResult(name="MeasureProfile") 
+    public MeasureProfile readMeasureTypes();
+
+    
+    /**
+     * Method #8: readPersonMeasure(Long id, String measureType, Long mid) => 
+     * Measure should return the value of {measureType} (e.g. weight) identified by {mid} for Person identified by {id}
+     * @param id
+     * @param type
+     * @param mid
+     * @return
+     */
+    @WebMethod(operationName="readPersonMeasure")
+    @WebResult(name="measure") 
+    public MeasureProfile readPersonMeasure(@WebParam(name="personId") Long id, @WebParam(name="type") String type,@WebParam(name="mid") Long mid);
+
+    
     
     
     /*
      
 
-  @WebMethod(operationName="updatePersonHealthProfile")
-    @WebResult(name="hpId") 
-    public int updatePersonHP(@WebParam(name="personId") int id, @WebParam(name="healthProfile") LifeStatus hp);
-    
 
 
-Method #6: readPersonHistory(Long id, String measureType) => List should return the list of values (the history) of {measureType} (e.g. weight) for Person identified by {id}
-Method #7: readMeasureTypes() => List should return the list of measures
-Method #8: readPersonMeasure(Long id, String measureType, Long mid) => Measure should return the value of {measureType} (e.g. weight) identified by {mid} for Person identified by {id}
+
+
 Method #9: savePersonMeasure(Long id, Measure m) =>should save a new measure object {m} (e.g. weight) of Person identified by {id} and archive the old value in the history
 Method #10: updatePersonMeasure(Long id, Measure m) => Measure | should update the measure identified with {m.mid}, related to the Person identified by {id}
      */

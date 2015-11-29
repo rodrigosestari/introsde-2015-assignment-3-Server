@@ -4,6 +4,7 @@ import java.util.List;
 import javax.jws.WebService;
 
 import introsde.assignment.soap.bean.MeasureBean;
+import introsde.assignment.soap.bean.MeasureProfile;
 import introsde.assignment.soap.bean.PersonBean;
 import introsde.assignment.soap.mapping.MeasureBeanDelegate;
 import introsde.assignment.soap.mapping.PersonBeanDelegate;
@@ -65,6 +66,27 @@ public class PeopleImpl implements People {
             return -1;
         }
     }
+
+	@Override
+	public MeasureProfile readPersonHistory(Long id, String type) {
+		MeasureProfile mp = new MeasureProfile();
+		mp.setCurrentHealthPersonType(id, type);
+		return mp;
+	}
+
+	@Override
+	public MeasureProfile readMeasureTypes() {
+		MeasureProfile mp = new MeasureProfile();
+		mp.setCurrentHealthAll();
+		return mp;
+	}
+
+	@Override
+	public MeasureProfile readPersonMeasure(Long id, String type, Long mid) {
+		MeasureProfile mp = new MeasureProfile();
+		mp.setCurrentHealthPersonTypeMid(id, type,mid);
+		return mp;
+	}
 
 
 

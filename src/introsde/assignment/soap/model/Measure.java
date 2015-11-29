@@ -36,6 +36,8 @@ import introsde.assignment.soap.dao.LifeCoachDao;
 	@NamedQuery(name="Measure.findAll", query="SELECT m FROM Measure m"),
 	@NamedQuery(name = "Measure.findCurrentdMeasure", query = "SELECT m FROM Measure m WHERE m.person.id = :id GROUP BY m.measureType ORDER BY m.dateRegistered DESC"),
 	@NamedQuery(name = "Measure.findMeasure", query = "SELECT m FROM Measure m WHERE m.person.id = :id"),
+	@NamedQuery(name = "Measure.findMeasureType", query = "SELECT m FROM Measure m WHERE m.person.id = :id and m.measureType = :type"),
+	@NamedQuery(name = "Measure.findMeasureTypeMid", query = "SELECT m FROM Measure m WHERE m.person.id = :id and m.measureType = :type and m.mid = :mid")
  })
 @XmlRootElement
 public class Measure implements Serializable {
@@ -132,6 +134,26 @@ public class Measure implements Serializable {
 		LifeCoachDao.instance.closeConnections(em);
 		return pd;
 	}
+	
+	public static List<Measure> getListMeasureByPersonType(Long idPerson, String type) {
+		EntityManager em = LifeCoachDao.instance.createEntityManager();		
+		List<Measure> pd = em.createNamedQuery("Measure.findMeasureType", Measure.class)
+				.setParameter("id", idPerson)
+				.setParameter("type", type).getResultList();
+		LifeCoachDao.instance.closeConnections(em);
+		return pd;
+	}
+	
+	public static List<Measure> getListMeasureByPersonTypeMid(Long idPerson, String type,Long mid) {
+		EntityManager em = LifeCoachDao.instance.createEntityManager();		
+		List<Measure> pd = em.createNamedQuery("Measure.findMeasureTypeMid", Measure.class)
+				.setParameter("id", idPerson)
+				.setParameter("type", type)
+				.setParameter("mid", mid).getResultList();
+		LifeCoachDao.instance.closeConnections(em);
+		return pd;
+	}
+	
 	
 	public static List<Measure> getListCurrentMeasureByPerson(Long idPerson) {
 		EntityManager em = LifeCoachDao.instance.createEntityManager();
