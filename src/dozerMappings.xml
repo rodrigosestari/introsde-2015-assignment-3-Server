@@ -5,24 +5,20 @@
 
 
 
-    <configuration>        
-        <custom-converters> 
-            <converter type="introsde.assignment.soap.util.DateTimeConverter" >
-                <class-a>java.util.Date</class-a>
-                <class-b>org.joda.time.DateTime</class-b>
-            </converter>     
-        </custom-converters>         
-    </configuration>
+	<configuration>
+		<custom-converters>
+			<converter type="introsde.assignment.soap.util.DateTimeConverter">
+				<class-a>java.util.Date</class-a>
+				<class-b>org.joda.time.DateTime</class-b>
+			</converter>
+		</custom-converters>
+	</configuration>
 
 
 	<mapping>
 		<class-a>introsde.assignment.soap.bean.MeasureBean</class-a>
 		<class-b>introsde.assignment.soap.model.Measure</class-b>
 		<field>
-			<a>dateRegistered</a>
-			<b>dateRegistered</b>
-		</field>
-		<field custom-converter="introsde.assignment.soap.util.DateTimeConverter">
 			<a>measureValueType</a>
 			<b>measureValueType</b>
 		</field>
@@ -31,14 +27,19 @@
 			<b>measureType</b>
 		</field>
 		<field>
+			<a>dateRegistered</a>
+			<b>dateRegistered</b>
+		</field>
+		<field>
 			<a>mid</a>
 			<b>mid</b>
 		</field>
-	</mapping>
+	<field><a>measureValue</a><b>measureValue</b></field></mapping>
+
+
 	<mapping type="bi-directional" wildcard="true">
 		<class-a>introsde.assignment.soap.model.Person</class-a>
 		<class-b>introsde.assignment.soap.bean.PersonBean</class-b>
-
 		<field>
 			<a>firstname</a>
 			<b>firstname</b>
@@ -47,13 +48,11 @@
 			<a>lastname</a>
 			<b>lastname</b>
 		</field>
-
 		<field>
 			<a>id</a>
 			<b>id</b>
 		</field>
-	<field><a get-method="getHealthHistory" set-method="setHealthHistory" map-get-method="getHealthHistory" map-set-method="setHealthHistory">healthHistory</a><b get-method="getHealthHistory" set-method="setHealthHistory" map-get-method="getHealthHistory" map-set-method="setHealthHistory">healthHistory</b></field><field><a get-method="getCurrentHealth" set-method="setCurrentHealth" map-get-method="getCurrentHealth" map-set-method="setCurrentHealth">currentHealth</a><b get-method="getCurrentHealth" set-method="setCurrentHealth" map-set-method="setCurrentHealth" map-get-method="getCurrentHealth">currentHealth</b></field></mapping>
-	<mapping></mapping>
-	<mapping></mapping>
+	</mapping>
+
 </mappings>
         

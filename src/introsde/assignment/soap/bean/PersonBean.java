@@ -12,6 +12,7 @@ import org.dozer.Mapping;
 
 import introsde.assignment.soap.model.Measure;
 
+
 @XmlRootElement(name = "person")
 //@XmlType(propOrder = { "firstname", "lastname", "birthdate", "healthprofile" })
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -22,19 +23,18 @@ public class PersonBean implements Serializable  {
 	private static final long serialVersionUID = 3166894122446393096L;
 
 	@Mapping("id")
-	 Long id;
+	 private Long id;
      
      @Mapping("firstname")
-	 String firstname;
+     private String firstname;
      
      @Mapping("lastname")
-	 String lastname;
+     private String lastname;
      
      @XmlElement(name = "currentHealth")
-	 List<Measure> currentHealth; // one for each type of measure
+     private  List<Measure> currentHealth; // one for each type of measure
      
-     @XmlElement(name = "healthHistory")
-	 List<Measure> healthHistory; // all measurements
+
 	public Long getId() {
 		return id;
 	}
@@ -59,12 +59,12 @@ public class PersonBean implements Serializable  {
 	public void setCurrentHealth(List<Measure> currentHealth) {
 		this.currentHealth = currentHealth;
 	}
-	public List<Measure> getHealthHistory() {
-		return healthHistory;
+	@Override
+	public String toString() {
+		return "PersonBean [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", currentHealth="
+				+ currentHealth + "]";
 	}
-	public void setHealthHistory(List<Measure> healthHistory) {
-		this.healthHistory = healthHistory;
-	}
+	
 	 
 	 
 }

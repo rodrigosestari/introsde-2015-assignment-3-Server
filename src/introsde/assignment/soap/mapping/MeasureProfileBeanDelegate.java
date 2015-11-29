@@ -7,7 +7,7 @@ import org.dozer.DozerBeanMapper;
 import introsde.assignment.soap.bean.MeasureBean;
 import introsde.assignment.soap.model.Measure;
 
-public class MeasureBeanDelegate {
+public class MeasureProfileBeanDelegate {
 
     public final static List<String> myMappingFiles = Arrays.asList("dozerMappings.xml");
 
@@ -35,7 +35,7 @@ public class MeasureBeanDelegate {
 		m.setMid(bean.getMid());
 		//m.setPerson();
 		return m;
-		*/
+			*/
 	}
     
 	/**
@@ -62,6 +62,6 @@ public class MeasureBeanDelegate {
 		
 		 //m.setPerson();
 		return bean;
-		*/
+			*/
 	}
 }

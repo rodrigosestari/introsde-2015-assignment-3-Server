@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import introsde.assignment.soap.dao.LifeCoachDao;
@@ -38,7 +40,8 @@ import introsde.assignment.soap.dao.LifeCoachDao;
 
 
 
-@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "measure")
 public class Measure implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -54,8 +57,8 @@ public class Measure implements Serializable {
 	@Column(name="dateRegistered")
 	Date dateRegistered;
 
-	@Column(name="measureName")
-	private String measureName;
+	@Column(name="measureValue")
+	private String measureValue;
 
 	@Column(name="measureType")
 	private String measureType;
@@ -67,6 +70,7 @@ public class Measure implements Serializable {
 	@JoinColumn(name = "idPerson", referencedColumnName = "idPerson")
 	private Person person;
 	
+
 
 
 	public Long getMid() {
@@ -85,12 +89,12 @@ public class Measure implements Serializable {
 		this.dateRegistered = dateRegistered;
 	}
 
-	public String getMeasureName() {
-		return measureName;
+	public String getMeasureValue() {
+		return measureValue;
 	}
 
-	public void setMeasureName(String measureName) {
-		this.measureName = measureName;
+	public void setMeasureValue(String measureValue) {
+		this.measureValue = measureValue;
 	}
 
 	public String getMeasureType() {
@@ -108,15 +112,14 @@ public class Measure implements Serializable {
 	public void setMeasureValueType(String measureValueType) {
 		this.measureValueType = measureValueType;
 	}
-	
-	public void setPerson(Person person) {
-		this.person = person;
-	}
 
 	public Person getPerson() {
 		return person;
 	}
-	
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 
 	// database operations
 	public static Measure getMeasureById(Long id) {

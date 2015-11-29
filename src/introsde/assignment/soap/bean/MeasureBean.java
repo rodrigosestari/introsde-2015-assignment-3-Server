@@ -31,17 +31,15 @@ public class MeasureBean implements Serializable {
 	 @XmlJavaTypeAdapter(type = DateTime.class, value = DateTimeAdapter.class)
 	private Date dateRegistered;
 	 
-	 @Mapping("measureName")
-	private String measureName;
-	
 	 @Mapping("measureType")
 	 private String measureType;
 	 
-	 @Mapping("mimeasureValued")
+	 @Mapping("measureValue")
 	 private String measureValue;
 	 
-	 @Mapping("mimeasureValueTyped")
+	 @Mapping("measureValueType")
 	 private String measureValueType; // string, integer, real
+	 
 	public Long getMid() {
 		return mid;
 	}
@@ -72,12 +70,7 @@ public class MeasureBean implements Serializable {
 	public void setMeasureValueType(String measureValueType) {
 		this.measureValueType = measureValueType;
 	}
-	public String getMeasureName() {
-		return measureName;
-	}
-	public void setMeasureName(String measureName) {
-		this.measureName = measureName;
-	}
+
 	 
 	 
 }

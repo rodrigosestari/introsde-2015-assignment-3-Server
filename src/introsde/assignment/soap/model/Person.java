@@ -12,13 +12,17 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import introsde.assignment.soap.dao.LifeCoachDao;
 @Entity  // indicates that this class is an entity to persist in DB
 @Table(name="Person") // to whole table must be persisted 
 @NamedQuery(name="Person.findAll", query="SELECT p FROM Person p")
-@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "people")
 public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id // defines this attributed as the one that identifies the entity
@@ -35,10 +39,6 @@ public class Person implements Serializable {
     
     @Column(name="firstname")
     private String firstname;
-
-    private List<Measure> currentHealth = null; // one for each type of measure
-
-    private List<Measure> healthHistory = null; // all measurements
 
     
     public Long getId() {
@@ -72,25 +72,16 @@ public class Person implements Serializable {
         LifeCoachDao.instance.closeConnections(em);
         return p;
     }
-	
-	public List<Measure> getHealthHistory() {
 
-        return Measure.getListCurrentMeasureByPerson(getId());
-    }
-	
 	public List<Measure> getCurrentHealth() {
        
         return Measure.getListCurrentMeasureByPerson(getId());
     }
 	
-	public void setCurrentHealth(List<Measure> currentHealth) {
-		this.currentHealth = currentHealth;
-	}
 
 
-	public void setHealthHistory(List<Measure> healthHistory) {
-		this.healthHistory = healthHistory;
-	}
+
+
 
 	public static List<Person> getAll() {
         EntityManager em = LifeCoachDao.instance.createEntityManager();
