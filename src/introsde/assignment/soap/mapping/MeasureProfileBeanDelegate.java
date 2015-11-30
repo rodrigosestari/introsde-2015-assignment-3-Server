@@ -2,45 +2,28 @@ package introsde.assignment.soap.mapping;
 
 import java.util.Arrays;
 import java.util.List;
-import org.dozer.DozerBeanMapper;
 
-import introsde.assignment.soap.bean.MeasureBean;
-import introsde.assignment.soap.model.Measure;
+import org.dozer.DozerBeanMapper;
 
 public class MeasureProfileBeanDelegate {
 
-    public final static List<String> myMappingFiles = Arrays.asList("dozerMappings.xml");
+	public final static List<String> myMappingFiles = Arrays.asList("dozerMappings.xml");
 
-    
-    /**
-	 * This function map a MeasureBean Presentation Layer into a
-	 * Measure Domain Model using Dozer
-	 * 
-	 * @param bean
-	 * an object dozerproject.transfer.MeasureBean
-	 * @return 
-	 * an object dozerproject.entity.Measure
-	 */
-	public static introsde.assignment.soap.model.Measure mapToMeasure(introsde.assignment.soap.bean.MeasureBean bean) {
-		
+	public static introsde.assignment.soap.model.Measure mapToMeasure(
+			introsde.assignment.soap.bean.MeasureBean measurebean) {
+
 		DozerBeanMapper mapper = new DozerBeanMapper();
 		mapper.setMappingFiles(myMappingFiles);
-		return (introsde.assignment.soap.model.Measure) mapper.map(bean, introsde.assignment.soap.model.Measure.class);
+		return (introsde.assignment.soap.model.Measure) mapper.map(measurebean,
+				introsde.assignment.soap.model.Measure.class);
 	}
-    
-	/**
-	 * This function map a Person Domain Model into a MeasureBean
-	 * Presentation Layer using Dozer
-	 * 
-	 * @param person
-	 * an object dozerproject.entity.MeasureStore
-	 * @return 
-	 * an object dozerproject.transfer.MeasureBean
-	 */
-	public static introsde.assignment.soap.bean.MeasureBean mapFromMeasure(introsde.assignment.soap.model.Measure person) {
-	
+
+	public static introsde.assignment.soap.bean.MeasureBean mapFromMeasure(
+			introsde.assignment.soap.model.Measure measure) {
+
 		DozerBeanMapper mapper = new DozerBeanMapper();
 		mapper.setMappingFiles(myMappingFiles);
-		return (introsde.assignment.soap.bean.MeasureBean) mapper.map(person, introsde.assignment.soap.bean.MeasureBean.class);
+		return (introsde.assignment.soap.bean.MeasureBean) mapper.map(measure,
+				introsde.assignment.soap.bean.MeasureBean.class);
 	}
 }

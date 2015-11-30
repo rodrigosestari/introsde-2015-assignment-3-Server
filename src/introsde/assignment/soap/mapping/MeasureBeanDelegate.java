@@ -3,58 +3,39 @@ package introsde.assignment.soap.mapping;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.dozer.DozerBeanMapper;
 
-import introsde.assignment.soap.bean.MeasureBean;
-import introsde.assignment.soap.model.Measure;
+import org.dozer.DozerBeanMapper;
 
 public class MeasureBeanDelegate {
 
-    public final static List<String> myMappingFiles = Arrays.asList("dozerMappings.xml");
+	public final static List<String> myMappingFiles = Arrays.asList("dozerMappings.xml");
 
-    
-    /**
-	 * This function map a MeasureBean Presentation Layer into a
-	 * Measure Domain Model using Dozer
-	 * 
-	 * @param bean
-	 * an object dozerproject.transfer.MeasureBean
-	 * @return 
-	 * an object dozerproject.entity.Measure
-	 */
 	public static introsde.assignment.soap.model.Measure mapToMeasure(introsde.assignment.soap.bean.MeasureBean bean) {
-		
+
 		DozerBeanMapper mapper = new DozerBeanMapper();
 		mapper.setMappingFiles(myMappingFiles);
 		return (introsde.assignment.soap.model.Measure) mapper.map(bean, introsde.assignment.soap.model.Measure.class);
 	}
-    
-	/**
-	 * This function map a Person Domain Model into a MeasureBean
-	 * Presentation Layer using Dozer
-	 * 
-	 * @param person
-	 * an object dozerproject.entity.MeasureStore
-	 * @return 
-	 * an object dozerproject.transfer.MeasureBean
-	 */
-	public static introsde.assignment.soap.bean.MeasureBean mapFromMeasure(introsde.assignment.soap.model.Measure person) {
-	
+
+	public static introsde.assignment.soap.bean.MeasureBean mapFromMeasure(
+			introsde.assignment.soap.model.Measure measure) {
+
 		DozerBeanMapper mapper = new DozerBeanMapper();
 		mapper.setMappingFiles(myMappingFiles);
-		return (introsde.assignment.soap.bean.MeasureBean) mapper.map(person, introsde.assignment.soap.bean.MeasureBean.class);
+		return (introsde.assignment.soap.bean.MeasureBean) mapper.map(measure,
+				introsde.assignment.soap.bean.MeasureBean.class);
 	}
-	
-	public static List<introsde.assignment.soap.bean.MeasureBean> mapFromMeasureList(List<introsde.assignment.soap.model.Measure> personl) {
+
+	public static List<introsde.assignment.soap.bean.MeasureBean> mapFromMeasureList(
+			List<introsde.assignment.soap.model.Measure> measurel) {
 		ArrayList<introsde.assignment.soap.bean.MeasureBean> bl = null;
-		if ((personl != null) && (personl.size() > 0)){
+		if ((measurel != null) && (measurel.size() > 0)) {
 			bl = new ArrayList<introsde.assignment.soap.bean.MeasureBean>();
-			for (introsde.assignment.soap.model.Measure p :personl){
+			for (introsde.assignment.soap.model.Measure p : measurel) {
 				bl.add(mapFromMeasure(p));
 			}
 		}
 		return bl;
 	}
-	
-	
+
 }
