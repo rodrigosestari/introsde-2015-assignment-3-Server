@@ -12,7 +12,6 @@ import javax.jws.soap.SOAPBinding.Use;
 import introsde.assignment.soap.bean.MeasureBean;
 import introsde.assignment.soap.bean.MeasureProfile;
 import introsde.assignment.soap.bean.PersonBean;
-import introsde.assignment.soap.model.Person;
 
 @WebService
 @SOAPBinding(style = Style.DOCUMENT, use=Use.LITERAL) //optional
@@ -26,7 +25,7 @@ public interface People {
 	 */
     @WebMethod(operationName="readPerson")
     @WebResult(name="person") 
-    public Person readPerson(@WebParam(name="personId") Long id);
+    public PersonBean readPerson(@WebParam(name="personId") Long id);
 
     /**
      * Method #1: readPersonList() => List | should list all the people in the database
@@ -76,8 +75,8 @@ public interface People {
  * @return
  */
     @WebMethod(operationName="readPersonHistory")
-    @WebResult(name="healthProfile-history") 
-    public MeasureProfile readPersonHistory(@WebParam(name="personId") Long id, @WebParam(name="type") String type);
+    @WebResult(name="MeasureProfile") 
+    public MeasureProfile readPersonHistory(@WebParam(name="personId") Long id, @WebParam(name="type") String measureType);
 
     
     
@@ -89,32 +88,45 @@ public interface People {
      */
     @WebMethod(operationName="readMeasureTypes")
     @WebResult(name="MeasureProfile") 
-    public MeasureProfile readMeasureTypes();
+    public List<String> readMeasureTypes();
 
     
     /**
      * Method #8: readPersonMeasure(Long id, String measureType, Long mid) => 
      * Measure should return the value of {measureType} (e.g. weight) identified by {mid} for Person identified by {id}
      * @param id
-     * @param type
+     * @param measureType
      * @param mid
      * @return
      */
     @WebMethod(operationName="readPersonMeasure")
-    @WebResult(name="measure") 
-    public MeasureProfile readPersonMeasure(@WebParam(name="personId") Long id, @WebParam(name="type") String type,@WebParam(name="mid") Long mid);
+    @WebResult(name="MeasureProfile") 
+    public MeasureProfile readPersonMeasure(@WebParam(name="personId") Long id, @WebParam(name="type") String measureType,@WebParam(name="mid") Long mid);
 
     
-    
-    
-    /*
-     
-
-
-
-
-
-Method #9: savePersonMeasure(Long id, Measure m) =>should save a new measure object {m} (e.g. weight) of Person identified by {id} and archive the old value in the history
-Method #10: updatePersonMeasure(Long id, Measure m) => Measure | should update the measure identified with {m.mid}, related to the Person identified by {id}
+    /**
+     * Method #9: savePersonMeasure(Long id, Measure m) =>should save a new measure object {m}
+     *  (e.g. weight) of Person identified by {id} and archive the old value in the history
+     * @param id
+     * @param type
+     * @param mid
+     * @return
      */
+    @WebMethod(operationName="savePersonMeasure")
+    @WebResult(name="measureId") 
+    public Long savePersonMeasure(@WebParam(name="personId") Long id, @WebParam(name="measure") MeasureBean m);
+
+    
+    
+    /**
+     * Method #10: updatePersonMeasure(Long id, Measure m) => Measure | should update the measure identified with {m.mid}, 
+     * related to the Person identified by {id}
+     * @param id
+     * @param m
+     * @return
+     */
+    @WebMethod(operationName="updatePersonMeasure")
+    @WebResult(name="measureId") 
+    public Long updatePersonMeasure(@WebParam(name="personId") Long id, @WebParam(name="measure") MeasureBean m);
+
 }
