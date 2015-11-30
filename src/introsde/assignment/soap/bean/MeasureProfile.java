@@ -44,6 +44,12 @@ public class MeasureProfile {
 	public void setCurrentHealth(List<MeasureBean> currentHealth) {
 		this.currentHealth = currentHealth;
 	}
+
+
+	@Override
+	public String toString() {
+		return "MeasureProfile [currentHealth=" + currentHealth + "]";
+	}
 	
 	
 	

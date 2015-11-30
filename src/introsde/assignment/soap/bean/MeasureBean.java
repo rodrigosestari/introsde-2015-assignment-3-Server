@@ -68,6 +68,11 @@ public class MeasureBean implements Serializable {
 	public void setMeasureValueType(String measureValueType) {
 		this.measureValueType = measureValueType;
 	}
+	@Override
+	public String toString() {
+		return "MeasureBean [mid=" + mid + ", dateRegistered=" + dateRegistered + ", measureType=" + measureType
+				+ ", measureValue=" + measureValue + ", measureValueType=" + measureValueType + "]";
+	}
 
 	 
 	 

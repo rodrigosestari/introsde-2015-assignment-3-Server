@@ -52,9 +52,10 @@ public class PeopleImpl implements People {
 	}
 
 	@Override
-	public Long updatePerson(Person person) {
-		person = Person.updatePerson(person);
-		return person.getId();
+	public Long updatePerson(PersonBean person) {
+		Person p =  PersonBeanDelegate.mapToPerson(person);		
+		p = Person.updatePerson(p);
+		return p.getId();
 	}
 
 	@Override

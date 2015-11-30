@@ -69,16 +69,13 @@ public class PersonBean implements Serializable  {
         
 		 return  MeasureBeanDelegate.mapFromMeasureList(Measure.getListCurrentMeasureByPerson(getId()));
     }
-	
-
-
-	
 	@Override
 	public String toString() {
 		return "PersonBean [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", currentHealth="
 				+ currentHealth + "]";
 	}
 	
-	 
-	 
+
+
+
 }
