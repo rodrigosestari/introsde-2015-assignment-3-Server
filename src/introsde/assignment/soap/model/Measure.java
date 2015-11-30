@@ -18,8 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import introsde.assignment.soap.dao.LifeCoachDao;
@@ -48,7 +46,7 @@ public class Measure implements Serializable {
 	@GeneratedValue(generator="sqlite_measuredef")
 	@TableGenerator(name="sqlite_measuredef", table="sqlite_sequence",
 	    pkColumnName="name", valueColumnName="seq",
-	    pkColumnValue="mid")
+	    pkColumnValue="Measure")
 	@Column(name="mid")
 	private Long mid;
 
