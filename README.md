@@ -21,7 +21,7 @@ Instead the client was implemented to call Heroku server.
 * **introsde.assignment.soap.model:** Classes to represent your domain model.
 * **introsde.assignment.soap.mapping** Classes to manage what and how the domain model is going to be mapped to the presentation layer.
 * **introsde.assignment.soap.endpoint** Standalone HTTP Server
-* **introsde.assignment.soap.ws** implementation ws
+* **introsde.assignment.soap.ws** Implementation WS
 
 
 
