@@ -164,6 +164,7 @@ public class PeopleClient {
 			Random nr = new Random();
 			newMeasureB.setMeasureValue(""+ nr.nextInt(100));
 			newMeasureB.setMeasureValueType("integer");
+			newMeasureB.setDateRegistered(new Date());
 			List<MeasureBean> ml = new ArrayList<MeasureBean>();
 			ml.add(newMeasureB);
 			newPersonB.setCurrentHealth(ml);
@@ -255,6 +256,7 @@ public class PeopleClient {
 			Random nr = new Random();
 			newmb.setMeasureValue("" + nr.nextInt(100));
 			newmb.setMeasureValueType("integer");
+			newmb.setDateRegistered(new Date());
 
 			Long mid = people.savePersonMeasure(idperson, newmb);
 			newmb.setMid(mid);
@@ -279,6 +281,7 @@ public class PeopleClient {
 
 				Integer newvalue = rd.nextInt(100);
 				newmb.setMeasureValue(newvalue.toString());
+				newmb.setDateRegistered(new Date());
 				people.updatePersonMeasure(idperson, newmb);
 
 				measureList = people.readPersonMeasure(idperson, newmb.getMeasureType(), newmb.getMid());
