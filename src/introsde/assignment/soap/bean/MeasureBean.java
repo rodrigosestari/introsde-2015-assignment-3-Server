@@ -80,8 +80,13 @@ public class MeasureBean implements Serializable {
 
 	@Override
 	public String toString() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String newname = dateFormat.format(dateRegistered);
+		String newname = null;
+		try {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			newname = dateFormat.format(dateRegistered);	
+		} catch (Exception e) {
+		}
+		
 		return "MeasureBean [mid=" + mid + ", dateRegistered=" + newname + ", measureType=" + measureType
 				+ ", measureValue=" + measureValue + ", measureValueType=" + measureValueType + "]";
 	}
