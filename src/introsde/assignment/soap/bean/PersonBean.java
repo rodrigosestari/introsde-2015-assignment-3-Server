@@ -17,7 +17,7 @@ import introsde.assignment.soap.model.Measure;
 
 @XmlRootElement(name = "person")
 @XmlType(propOrder = { "id", "firstname", "lastname", "currentHealth" })
-@XmlAccessorType(XmlAccessType.PROPERTY)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PersonBean implements Serializable  {
      /**
 	 * 
@@ -25,18 +25,21 @@ public class PersonBean implements Serializable  {
 	private static final long serialVersionUID = 3166894122446393096L;
 
 	@Mapping("id")
+    @XmlElement(name = "id")
 	 private Long id;
      
      @Mapping("firstname")
+     @XmlElement(name = "firstname")
      private String firstname;
      
      @Mapping("lastname")
+     @XmlElement(name = "lastname")
      private String lastname;
      
-    
-     private  List<MeasureBean> currentHealth; // one for each type of measure
+     @XmlElement(name = "currentHealth")
+     private  List<MeasureBean> currentHealth = null; // one for each type of measure
      
-     @XmlElement(name = "id")
+
 	public Long getId() {
 		return id;
 	}
@@ -44,7 +47,7 @@ public class PersonBean implements Serializable  {
 		this.id = id;
 	}
 	
-    @XmlElement(name = "firstname")
+  
 	public String getFirstname() {
 		return firstname;
 	}
@@ -52,7 +55,7 @@ public class PersonBean implements Serializable  {
 		this.firstname = firstname;
 	}
 	
-    @XmlElement(name = "lastname")
+
 	public String getLastname() {
 		return lastname;
 	}
@@ -64,10 +67,13 @@ public class PersonBean implements Serializable  {
 		this.currentHealth = currentHealth;
 	}
 	
-	 @XmlElement(name = "currentHealth")
+	
 	public List<MeasureBean> getCurrentHealth() {	      
-        
-		 return  MeasureBeanDelegate.mapFromMeasureList(Measure.getListCurrentMeasureByPerson(getId()));
+        if (currentHealth == null){
+        	currentHealth =MeasureBeanDelegate.mapFromMeasureList(Measure.getListCurrentMeasureByPerson(getId()));
+        }
+		        
+        	return	currentHealth;
     }
 	@Override
 	public String toString() {

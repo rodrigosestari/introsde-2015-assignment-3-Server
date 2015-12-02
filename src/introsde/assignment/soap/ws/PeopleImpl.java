@@ -21,13 +21,16 @@ public class PeopleImpl implements People {
 	@Override
 	public PersonBean readPerson(Long id) {
 		System.out.println("---> Reading Person by id = " + id);
+		PersonBean pb = null;
 		Person p = Person.getPersonById(id);
 		if (p != null) {
 			System.out.println("---> Found Person by id = " + id + " => " + p.getFirstname());
+			pb =  PersonBeanDelegate.mapFromPerson(p);
 		} else {
 			System.out.println("---> Didn't find any Person with  id = " + id);
+			 
 		}
-		PersonBean pb =  PersonBeanDelegate.mapFromPerson(p);
+		
 		return pb;
 	}
 
@@ -39,15 +42,16 @@ public class PeopleImpl implements People {
 
 	@Override
 	public Long addPerson(PersonBean person) {
+		Person p = PersonBeanDelegate.mapToPerson(person);
+		p = Person.savePerson(p);
 		if ((person.getCurrentHealth() != null) && (person.getCurrentHealth().size() > 0)) {
 			for (MeasureBean mb : person.getCurrentHealth()) {
 				Measure m = MeasureBeanDelegate.mapToMeasure(mb);
+				m.setPerson(p);
 				Measure.saveMeasureDefinition(m);
 			}
 		}
-		Person p = PersonBeanDelegate.mapToPerson(person);
-
-		p = Person.savePerson(p);
+		
 		return p.getId();
 	}
 
