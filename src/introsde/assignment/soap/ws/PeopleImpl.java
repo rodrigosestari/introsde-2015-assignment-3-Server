@@ -113,6 +113,7 @@ public class PeopleImpl implements People {
 			Measure measure = MeasureBeanDelegate.mapToMeasure(m);
 			Person p = Person.getPersonById(id);
 			measure.setPerson(p);
+			measure.setDateRegistered(new Date());
 			measure = Measure.updateMeasureDefinition(measure);
 			return measure.getMid();
 		}
